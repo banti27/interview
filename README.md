@@ -12,7 +12,8 @@ Permutation is defined as the re-arranging of the elements of the set. For examp
 1. {2, 3, 1}
 1. {3, 1, 2}
 1. {3, 2, 1}
-If a set has ‘n’ distinct elements it will have n!n! permutations.
+
+If a set has ‘n’ distinct elements it will have n! permutations.
 
 #### Example 1: 
 
