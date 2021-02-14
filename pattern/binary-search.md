@@ -142,5 +142,53 @@ public static int[] findRange(int[] arr, int key) {
  ```
  ***
 
+## Search in a Sorted Infinite Array
+**Problem Statement:**
+Given an infinite sorted array (or an array with unknown size), find if a given number ‘key’ is present in the array. Write a function to return the index of the ‘key’ if it is present in the array, otherwise return -1.
+
+```
+  public static int search(ArrayReader reader, int key) {
+    int start = 0; 
+    int end = 1;
+    
+    // need to find the boundary
+    // looping till we found the boundary
+    while(reader.get(end)<key){
+      int newStart = end+1;
+      
+      // max index is the => end + (length of the current boundary) * 2
+      end+=(end-start+1)*2;
+      
+      // update the start index
+      start=newStart;
+    }
+    
+    // now we know the boundary then search the element in the array
+    return binarySerach(reader, key, start, end);
+  }
+
+  public static int binarySerach(ArrayReader reader, int key, int start, int end){
+    while(start<=end){
+      int mid = start+(end-start)/2;
+      if(key<reader.get(mid)){
+        end=mid-1;
+      }else if(key>reader.get(mid)){
+        start=mid+1;
+      }else{
+        return mid;
+      }
+    }
+    return -1;
+  }
+```
+***
+
+
+
+
+
+
+
+
 
 
