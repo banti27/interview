@@ -65,6 +65,7 @@ Given an array of numbers sorted in an ascending order, find the ceiling of a gi
     return start;// ceiling: the next greater element is the element present at the start index
   }
 ```
+***
 
 ## Next leter
 **Problem Statement:**
@@ -98,3 +99,48 @@ public static char searchNextLetter(char[] letters, char key) {
   
 ```
 ***
+## Number range
+**Problem Statement:**
+Given an array of numbers sorted in ascending order, find the range of a given number ‘key’. The range of the ‘key’ will be the first and last position of the ‘key’ in the array.
+
+```
+public static int[] findRange(int[] arr, int key) {
+    int[] result = new int[] { -1, -1 };
+    result[0] = search(arr,key,false);// get the lower bound
+    
+    // check for the lower bound if it is present otherwise key not found
+    if(result[0]!=-1){
+      result[1]=search(arr,key,true);// get the upper bound
+    }
+    return result;
+  }
+
+  private static int search(int[] arr, int key, boolean isMax){
+    int n = arr.length-1;
+    int start = 0;
+    int end = n-1;
+    int index = -1;// index of the lower or upper bound
+    
+    while(start<=end){
+      int mid = start + (end-start)/2;
+      if(key<arr[mid]){
+        end = mid-1;
+      }else if(key>arr[mid]){
+        start = mid+1;
+      }else{
+      // modification for getting the lower and upper bound
+        index=mid;
+        if(isMax){
+          start=mid+1;// to get upper move right till the key is found
+        }else{
+          end=mid-1;// to get lower move left till the key is found 
+        }
+      }
+    }
+    return index;
+  }
+ ```
+ ***
+
+
+
